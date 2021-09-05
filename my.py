@@ -55,7 +55,7 @@ class Item(ormar.Model):
 
 @app.get("/items/", response_model=List[Item])
 async def get_items():
-    items = await Item.objects.select_related('categorys').all()
+    items = await Item.objects.select_related('category').all()
     return items
 
 
