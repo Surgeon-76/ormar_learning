@@ -19,7 +19,7 @@ database = databases.Database(f"postgresql://{user_name_db}:{password_db}@localh
 app.state.database = database
 
 engine = sqlalchemy.create_engine(f"postgresql://{user_name_db}:{password_db}@localhost/{db_name}")
-metadata.create_all(engine)
+#metadata.create_all(engine)
 
 
 @app.on_event("startup")
@@ -51,7 +51,7 @@ class Item(ormar.Model):
     name: str = ormar.String(max_length=100)
     category: Optional[Category] = ormar.ForeignKey(Category, nullable=True)
 
-
+metadata.create_all(engine)
 
 @app.get("/items/", response_model=List[Item])
 async def get_items():
